@@ -170,7 +170,7 @@ class Fs extends FlysystemFs
     {
         $endpoint = App::parseEnv($this->endpoint);
 
-        if (!str_contains($endpoint, 'https')) {
+        if (!str_contains($endpoint, '://')) {
             $endpoint = 'https://' .  $endpoint;
         }
 
@@ -178,6 +178,7 @@ class Fs extends FlysystemFs
             'version'      => 'latest',
             'region'       => App::parseEnv($this->region),
             'endpoint'     => $endpoint,
+            'use_path_style_endpoint' => Craft::parseEnv('$OBJECT_STORAGE_PATH_STYLE_ENDPOINT') === '1',
             'http_handler' => new GuzzleHandler(Craft::createGuzzleClient()),
             'credentials'  => [
                 'key'    => App::parseEnv($this->keyId),
