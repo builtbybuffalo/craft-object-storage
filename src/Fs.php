@@ -104,7 +104,13 @@ class Fs extends FlysystemFs
         $rootUrl = parent::getRootUrl();
 
         if ($this->url === '$OBJECT_STORAGE_HOST' || $this->url === '') {
-            $rootUrl =  'https://' . Craft::parseEnv('$OBJECT_STORAGE_HOST') . '/';
+            $host = Craft::parseEnv('$OBJECT_STORAGE_HOST');
+
+            if (str_contains($host, '://')) {
+                $rootUrl =  $host;
+            } else {
+                $rootUrl = 'https://' . $host . '/';
+            }
         }
 
         if ($rootUrl && $this->subfolder) {
