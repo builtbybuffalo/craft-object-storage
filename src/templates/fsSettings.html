@@ -57,6 +57,14 @@
     placeholder: "path/to/subfolder"|t('fortrabbit-object-storage')
 }) }}
 
+{{ forms.lightswitchField({
+    label: "Make Uploads Public"|t('fortrabbit-object-storage'),
+    instructions: "Sets the ACL for uploaded objects.",
+    id: 'makeUploadsPublic',
+    name: 'makeUploadsPublic',
+    on: fs.makeUploadsPublic
+}) }}
+
 {{ forms.autosuggestField({
     label: "Expires"|t('fortrabbit-object-storage'),
     instructions: "Cache expiration period."|t('fortrabbit-object-storage'),
