@@ -113,7 +113,7 @@ class Fs extends FlysystemFs
             }
         }
 
-        if (App::parseEnv('$OBJECT_STORAGE_PATH_STYLE_ENDPOINT')) {
+        if (App::parseEnv('$OBJECT_STORAGE_PATH_STYLE_ENDPOINT') === true) {
             $rootUrl .= App::parseEnv($this->bucket) . '/';
         }
 
